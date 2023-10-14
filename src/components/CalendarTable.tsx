@@ -28,14 +28,6 @@ const rooms: {
   }
 ];
 
-const defaultEvent: Event = {
-  name: "",
-  start: undefined,
-  end: undefined,
-  title: "",
-  roomId: ""
-};
-
 // Setup the localizer by providing the mo ment (or globalize, or Luxon) Object
 // to the correct localizer.
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -43,7 +35,6 @@ const localizer = momentLocalizer(moment); // or globalizeLocalizer
 const CalendarTable = () => {
   const [events, setEvents] = useState([]);
   const [selectRoom, setSelectRoom] = useState(rooms[0].value);
-  const [selectEvent, setSelectEvent] = useState(defaultEvent);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
@@ -91,8 +82,7 @@ const CalendarTable = () => {
   );
 
   const handleSelectEvent = useCallback((event) => {
-    setSelectEvent(event);
-    showEventInfo()
+    showEventInfo(event);
   }, []);
 
   useEffect(() => {
@@ -110,18 +100,18 @@ const CalendarTable = () => {
     setSelectRoom(room);
   };
 
-  const showEventInfo = () => {
+  const showEventInfo = (event: Event) => {
     Modal.info({
       title: selectRoom,
       content: (
         <div>
-          <p>Title: {selectEvent.title}</p>
-          <p>Name: {selectEvent.name}</p>
-          <p>Start: {selectEvent.start.toLocaleString()}</p>
-          <p>End: {selectEvent.end.toLocaleString()}</p>
+          <p>Title: {event.title}</p>
+          <p>Name: {event.name}</p>
+          <p>Start: {event.start.toLocaleString()}</p>
+          <p>End: {event.end.toLocaleString()}</p>
         </div>
       ),
-      onOk() {},
+      onOk() {}
     });
   };
   return (
