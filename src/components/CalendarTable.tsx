@@ -35,11 +35,11 @@ const rooms: {
 moment.tz.setDefault('Asia/Bangkok')
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 const minDate = new Date()
-// minDate.setHours(6)
-// minDate.setMinutes(0)
+minDate.setHours(8)
+minDate.setMinutes(0)
 const maxDate = new Date()
-// maxDate.setHours(22)
-// maxDate.setMinutes(0)
+maxDate.setHours(18)
+maxDate.setMinutes(0)
 
 const CalendarTable = () => {
   const [events, setEvents] = useState([]);
