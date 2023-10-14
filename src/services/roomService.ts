@@ -4,19 +4,19 @@ import { Event } from "../models/Event";
 const eventMap = new Map<string, Event[]>([
   [
     "Room 1",
-    [{ roomId: "1", start: new Date(), end: new Date(), title: "", name: "" }]
+    []
   ],
   [
     "Room 2",
-    [{ roomId: "2", start: new Date(), end: new Date(), title: "", name: "" }]
+    []
   ],
   [
     "Room 3",
-    [{ roomId: "3", start: new Date(), end: new Date(), title: "", name: "" }]
+    []
   ],
   [
     "Room 4",
-    [{ roomId: "4", start: new Date(), end: new Date(), title: "", name: "" }]
+    []
   ]
 ]);
 
