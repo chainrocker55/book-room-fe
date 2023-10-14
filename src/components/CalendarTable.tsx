@@ -2,6 +2,7 @@ import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import { Fragment, useState, useCallback, useEffect } from "react";
 import { Event } from "../models/Event";
 import moment from "moment";
+import 'moment-timezone' // or 'moment-timezone/builds/moment-timezone-with-data[-datarange].js'. See their docs
 import "../sass/styles.scss";
 import { Select, Modal, Form, Input } from "antd";
 import { getEvent, addEvent } from "../services/roomService";
@@ -28,9 +29,17 @@ const rooms: {
   }
 ];
 
+
 // Setup the localizer by providing the mo ment (or globalize, or Luxon) Object
 // to the correct localizer.
+moment.tz.setDefault('Asia/Bangkok')
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
+const minDate = new Date()
+// minDate.setHours(6)
+// minDate.setMinutes(0)
+const maxDate = new Date()
+// maxDate.setHours(22)
+// maxDate.setMinutes(0)
 
 const CalendarTable = () => {
   const [events, setEvents] = useState([]);
@@ -175,6 +184,8 @@ const CalendarTable = () => {
         selectable
         style={{ minHeight: 700 }}
         timeslots={1}
+        max={maxDate}
+        min={minDate}
       />
     </Fragment>
   );
